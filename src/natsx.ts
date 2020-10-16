@@ -39,7 +39,7 @@ export interface RxSubEvent extends SubEvent {
   type: 'subscribe' | 'unsubscribe';
 }
 
-export class RxNats {
+export class NatsX {
   private _statusSubject$ = new Subject<ConnectionStatus>();
 
   constructor(public rawClient: Client) { }
@@ -165,9 +165,9 @@ export class RxNats {
   }
 }
 
-export const connect = (options: string | number | NatsConnectionOptions): Observable<RxNats> => {
+export const connect = (options: string | number | NatsConnectionOptions): Observable<NatsX> => {
   return from(rawConnect(options))
     .pipe(
-      map(client => new RxNats(client))
+      map(client => new NatsX(client))
     )
 }

@@ -1,16 +1,16 @@
 {
-  "name": "rxnats",
+  "name": "natsx",
   "version": "0.1.0",
   "description": "Reactive Nats client and RxJS wrapper for ts-nats (https://github.com/nats-io/nats.ts)",
-  "main": "rxnats.js",
-  "types": "rxnats.d.ts",
+  "main": "natsx.js",
+  "types": "natsx.d.ts",
   "scripts": {
     "build": "tsc",
     "check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yak0/rxnats.git"
+    "url": "git+https://github.com/yak0/natsx.git"
   },
   "keywords": [
     "rxjs",
@@ -20,9 +20,9 @@
   "author": "Yakup Cilesiz <yakupcilesiz@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yak0/rxnats/issues"
+    "url": "https://github.com/yak0/natsx/issues"
   },
-  "homepage": "https://github.com/yak0/rxnats#readme",
+  "homepage": "https://github.com/yak0/natsx#readme",
   "peerDependencies": {
     "rxjs": "^6.6.3",
     "ts-nats": "^1.2.15"

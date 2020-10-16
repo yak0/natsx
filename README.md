@@ -1,48 +1,48 @@
-## RxNats
+## NatsX
  <p>Reactive <a href="http://nats.io" target="_blank">Nats</a> client and RxJS wrapper for <a href="https://github.com/nats-io/nats.ts" target="_blank">ts-nats</a></p>
 
- <a href="https://www.npmjs.com/~rxnats" target="_blank"><img src="https://img.shields.io/npm/v/rxnats.svg"
+ <a href="https://www.npmjs.com/~natsx" target="_blank"><img src="https://img.shields.io/npm/v/natsx.svg"
       alt="NPM Version" /></a>
-  <a href="https://www.npmjs.com/~rxnats" target="_blank"><img src="https://img.shields.io/npm/l/rxnats.svg"
+  <a href="https://www.npmjs.com/~natsx" target="_blank"><img src="https://img.shields.io/npm/l/natsx.svg"
       alt="Package License" /></a>
-  <a href="https://www.npmjs.com/~rxnats" target="_blank"><img
-      src="https://img.shields.io/npm/dm/rxnats.svg" alt="NPM Downloads" /></a>
+  <a href="https://www.npmjs.com/~natsx" target="_blank"><img
+      src="https://img.shields.io/npm/dm/natsx.svg" alt="NPM Downloads" /></a>
  ### Installation
 
 ```bash
-$ npm i --save rxnats
+$ npm i --save natsx
 ```
 
 ## Usage
 The main purpose of the library is to manage nats subscription behavior with RxJS operators like _`take`_ and _`timeout`_.
 
-You can pass a nats client or use connect() method of RxNats to initalize the wrapper
+You can pass a nats client or use connect() method of NatsX to initalize the wrapper
 
 ```ts
 import { connect, Msg } from 'ts-nats';
-import { RxNats } from 'rxnats';
+import { NatsX } from 'natsx';
 
 const rawClient = await connect({servers: ['nats://demo.nats.io:4222', 'tls://demo.nats.io:4443']});
-const rxClient = new RxNats(rawClient);
-rxClient.from('greeting').subscribe((msg: Msg) => { ... })
+const client = new NatsX(rawClient);
+client.from('greeting').subscribe((msg: Msg) => { ... })
 ```
 
 To unsubscribe from nats subscription, you must unsubscribe from the observable with operators or manually.
 
 ```ts
 // that will get 3 greeting messages then unsubscribe from nats subscription
-rxClient.from('greeting')
+client.from('greeting')
   .pipe(
     take(3)
   )
   .subscribe((msg: Msg) => { ... })
 ```
 
-To achieve the same ability for nats requests, we are not using the <a href="https://github.com/nats-io/nats.ts" target="_blank">ts-nats</a> request method directly. You must manage your subscription same way of _`from`_ method of RxNats
+To achieve the same ability for nats requests, we are not using the <a href="https://github.com/nats-io/nats.ts" target="_blank">ts-nats</a> request method directly. You must manage your subscription same way of _`from`_ method of NatsX
 
 ```ts
 // that will wait a response for 2 seconds then throw timeout error and unsubscribe from reply subject.
-rxClient.request('greeter', 'me')
+client.request('greeter', 'me')
   .pipe(
     timeout(2000)
   )
@@ -56,4 +56,4 @@ Also, you can use other methods like _`publish`_, _`close`_, _`drain`_ and liste
 You are welcome to contribute to this project, just open a PR.
 ### License
 
-- RxNats is [MIT licensed](LICENSE).
+- NatsX is [MIT licensed](LICENSE).
