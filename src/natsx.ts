@@ -73,7 +73,6 @@ export class NatsX {
   }
 
   get subsciptions$(): Observable<RxSubEvent> {
-    this.rawClient.drain()
     return merge(
       fromEvent<SubEvent>(this.rawClient, 'subscribe')
         .pipe(
